@@ -4,6 +4,7 @@ import { AuthProvider } from "./contexts/Auth";
 import Listas from "./pages/Home";
 import CadastroLista from "./pages/CadastroLista";
 import CadastroProduto from "./pages/CadastroProduto";
+import ListagemProdutos from "./pages/ListagemProdutos";
 
 export default function AppRoute() {
   return (
@@ -17,6 +18,8 @@ export default function AppRoute() {
           <Route path="/listas/nova" element={<CadastroLista />} />
 
           <Route path="/produtos/novo" element={<CadastroProduto />} />
+
+          <Route path="/listas/:listaId" element={<ListagemProdutos />} />
 
           <Route path="*" element={<h1>Página não encontrada</h1>} />
         </Routes>

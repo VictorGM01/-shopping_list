@@ -42,7 +42,7 @@ function Listas() {
         <Box display="flex" flexDirection="column" gap={2}>
           {data &&
             data.map((lista) => (
-              <Link to={`/lista/${lista.id}`} key={lista.id}>
+              <Link to={`/listas/${lista.id}`} key={lista.id}>
                 <Card
                   key={lista.id}
                   sx={{

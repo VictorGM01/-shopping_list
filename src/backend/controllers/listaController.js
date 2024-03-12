@@ -86,4 +86,17 @@ module.exports = class ListaController {
       reply.status(500).send({ message: error.message });
     }
   }
+
+  static async findProducts(request, reply) {
+    try {
+      const idUsuario = request.user.id;
+      const idLista = request.params.id;
+
+      const produtos = await listaService.findProducts(idLista, idUsuario);
+
+      reply.status(200).send(produtos);
+    } catch (error) {
+      reply.status(500).send({ message: error.message });
+    }
+  }
 };

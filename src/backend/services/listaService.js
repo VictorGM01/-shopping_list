@@ -65,4 +65,18 @@ module.exports = class ListaService {
 
     return true;
   }
+
+  async findProducts(idLista, idUsuario) {
+    const lista = await database.listas.findOne({
+      where: {
+        id: idLista,
+        id_usuario: idUsuario,
+      },
+      include: {
+        association: "produtos",
+      },
+    });
+
+    return lista.produtos;
+  }
 };
