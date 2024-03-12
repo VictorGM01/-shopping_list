@@ -1,5 +1,5 @@
 const fastify = require("fastify")({ logger: true });
-const routes = require("./routes/routes.js");
+const { routes, routesWithAuth } = require("./routes/routes.js");
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -15,7 +15,17 @@ fastify.register(require('fastify-jwt'), {
   secret: process.env.JWT_SECRET
 });
 
+fastify.decorate("authenticate", async (request, reply) => {
+  try {
+    await request.jwtVerify();
+  } catch (err) {
+    reply.send(err);
+  }
+});
+
 fastify.register(routes);
+
+fastify.register(routesWithAuth);
 
 // testa a conexão com o banco
 fastify.get("/", async (request, reply) => {
