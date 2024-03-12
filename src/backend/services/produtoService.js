@@ -58,4 +58,29 @@ module.exports = class ProdutoService {
 
     return true;
   }
+
+  async addToList(idProduto, listas, idUsuario) {
+    const produto = await database.produtos.findOne({
+      where: {
+        id: idProduto,
+        id_usuario: idUsuario,
+      },
+    });
+
+    if (!produto) {
+      return false;
+    }
+
+    // permite apenas as listas que pertencem ao usuário
+    const listasBanco = await database.listas.findAll({
+      where: {
+        id_usuario: idUsuario,
+        id: listas,
+      },
+    });
+
+    await produto.setListas(listasBanco);
+
+    return true;
+  }
 };

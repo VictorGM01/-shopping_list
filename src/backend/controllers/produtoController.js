@@ -80,4 +80,37 @@ module.exports = class ProdutoController {
       reply.status(500).send({ message: error.message });
     }
   }
+
+  static async addToList(request, reply) {
+    try {
+      const idUsuario = request.user.id;
+      const idProduto = request.params.id;
+      
+      const schemas = Joi.object({
+        listas: Joi.array().items(Joi.number().integer()).required(),
+      });
+
+      const { value, error } = schemas.validate(request.body);
+
+      if (error) {
+        reply.status(400).send({ message: error.message });
+        return;
+      }
+
+      const adicionado = await produtoService.addToList(
+        idProduto,
+        value.listas,
+        idUsuario
+      );
+
+      if (!adicionado) {
+        reply.status(404).send({ message: "Produto ou lista não encontrados" });
+        return;
+      }
+
+      reply.status(204).send();
+    } catch (error) {
+      reply.status(500).send({ message: error.message });
+    }
+  }
 };

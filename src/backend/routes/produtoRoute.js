@@ -5,4 +5,5 @@ module.exports = async function (fastify, options) {
   fastify.get("/", ProdutoController.findAll);
   fastify.get("/:id", ProdutoController.findOne);
   fastify.delete("/:id", ProdutoController.remove);
+  fastify.post("/:id/listas", ProdutoController.addToList);
 };
