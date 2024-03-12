@@ -13,7 +13,9 @@ module.exports = class UsuarioController {
         email: Joi.string().email().required(),
         senha: Joi.string().required(),
         ativo: Joi.boolean().default(true),
-        permissoes: Joi.array().items(Joi.string().valid("ADMIN", "USER")).required(),
+        permissoes: Joi.array()
+          .items(Joi.string().valid("ADMIN", "USER"))
+          .required(),
       });
 
       const { value, error } = schema.validate(usuario);
@@ -26,6 +28,22 @@ module.exports = class UsuarioController {
       const usuarioCriado = await usuarioService.create(value);
 
       reply.status(201).send(usuarioCriado);
+    } catch (error) {
+      reply.status(500).send({ message: error.message });
+    }
+  }
+
+  static async login(request, reply) {
+    try {
+      const usuario = request.body;
+
+      console.log(usuario);
+      
+      const usuarioEncontrado = await usuarioService.login(usuario);
+
+      const token = request.jwt.sign({ id: usuarioEncontrado.id });
+
+      reply.status(200).send({ token });
     } catch (error) {
       reply.status(500).send({ message: error.message });
     }

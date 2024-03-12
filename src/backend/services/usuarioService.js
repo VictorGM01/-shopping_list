@@ -25,4 +25,19 @@ module.exports = class UsuarioService {
 
     return usuarioCriado;
   }
+
+  async login(usuario) {
+    const usuarioEncontrado = await database.usuarios.findOne({
+      where: {
+        email: usuario.email,
+        senha: usuario.senha,
+      },
+    });
+
+    if (!usuarioEncontrado) {
+      throw new Error("Usuário ou senha inválidos");
+    }
+
+    return usuarioEncontrado;
+  }
 };

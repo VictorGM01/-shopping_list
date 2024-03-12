@@ -1,11 +1,18 @@
 const fastify = require("fastify")({ logger: true });
 const routes = require("./routes/routes.js");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 fastify.addHook('onRequest', (request, reply, done) => {
   if (request.method === 'POST' && !request.headers['content-type']) {
     request.headers['content-type'] = 'application/json';
   }
   done();
+});
+
+fastify.register(require('fastify-jwt'), {
+  secret: process.env.JWT_SECRET
 });
 
 fastify.register(routes);
