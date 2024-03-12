@@ -4,6 +4,17 @@ const Joi = require("joi");
 const usuarioService = new UsuarioService();
 
 module.exports = class UsuarioController {
+  
+  /**
+   * @description Cria um novo usuário
+   * @date 3/12/2024 - 7:52:28 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async create(request, reply) {
     try {
       const usuario = request.body;
@@ -33,6 +44,17 @@ module.exports = class UsuarioController {
     }
   }
 
+  
+  /**
+   * @description Faz login no sistema
+   * @date 3/12/2024 - 7:52:38 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async login(request, reply) {
     try {
       const usuario = request.body;

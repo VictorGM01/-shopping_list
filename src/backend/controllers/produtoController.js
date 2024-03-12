@@ -4,6 +4,17 @@ const Joi = require("joi");
 const produtoService = new ProdutoService();
 
 module.exports = class ProdutoController {
+  
+  /**
+   * @description Cria um novo produto
+   * @date 3/12/2024 - 7:51:28 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async create(request, reply) {
     try {
       const produto = request.body;
@@ -33,6 +44,17 @@ module.exports = class ProdutoController {
     }
   }
 
+  
+  /**
+   * @description Busca todos os produtos do usuário
+   * @date 3/12/2024 - 7:51:45 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async findAll(request, reply) {
     try {
       const idUsuario = request.user.id;
@@ -45,6 +67,17 @@ module.exports = class ProdutoController {
     }
   }
 
+  
+  /**
+   * @description Busca um produto pelo id
+   * @date 3/12/2024 - 7:51:53 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async findOne(request, reply) {
     try {
       const idUsuario = request.user.id;
@@ -63,6 +96,17 @@ module.exports = class ProdutoController {
     }
   }
 
+  
+  /**
+   * @description Atualiza um produto existente
+   * @date 3/12/2024 - 7:52:03 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async remove(request, reply) {
     try {
       const idUsuario = request.user.id;
@@ -81,6 +125,17 @@ module.exports = class ProdutoController {
     }
   }
 
+  
+  /**
+   * @description Adiciona um produto a uma lista
+   * @date 3/12/2024 - 7:52:14 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async addToList(request, reply) {
     try {
       const idUsuario = request.user.id;

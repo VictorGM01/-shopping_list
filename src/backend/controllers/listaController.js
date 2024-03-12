@@ -4,6 +4,17 @@ const Joi = require("joi");
 const listaService = new ListaService();
 
 module.exports = class ListaController {
+  
+  /**
+   * @description Cria uma nova lista
+   * @date 3/12/2024 - 7:50:01 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async create(request, reply) {
     try {
       const trilha = request.body;
@@ -33,6 +44,17 @@ module.exports = class ListaController {
     }
   }
 
+  
+  /**
+   * @description Atualiza uma lista existente
+   * @date 3/12/2024 - 7:50:37 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async findAll(request, reply) {
     try {
       const idUsuario = request.user.id;
@@ -45,6 +67,17 @@ module.exports = class ListaController {
     }
   }
 
+  
+  /**
+   * @description Busca uma lista pelo id
+   * @date 3/12/2024 - 7:50:52 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async findOne(request, reply) {
     try {
       const idUsuario = request.user.id;
@@ -63,6 +96,17 @@ module.exports = class ListaController {
     }
   }
 
+  
+  /**
+   * @description Atualiza uma lista existente
+   * @date 3/12/2024 - 7:50:59 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async addProducts(request, reply) {
     try {
       const idUsuario = request.user.id;
@@ -87,6 +131,17 @@ module.exports = class ListaController {
     }
   }
 
+  
+  /**
+   * @description Atualiza uma lista existente
+   * @date 3/12/2024 - 7:51:10 PM
+   *
+   * @static
+   * @async
+   * @param {*} request
+   * @param {*} reply
+   * @returns {Promise<void>}
+   */
   static async findProducts(request, reply) {
     try {
       const idUsuario = request.user.id;
