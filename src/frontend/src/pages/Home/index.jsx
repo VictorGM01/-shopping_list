@@ -5,6 +5,7 @@ import {
   Typography,
   CircularProgress,
   Box,
+  Button,
 } from "@mui/material";
 import api from "../../api";
 import { ThemeProvider } from "@mui/material/styles";
@@ -24,6 +25,18 @@ function Listas() {
   return (
     <ThemeProvider theme={theme}>
       <Box className={styles.container}>
+        <Box display="flex" justifyContent="center" gap={2}>
+          <Link to="/listas/nova">
+            <Button variant="outlined" color="primary">
+              Nova Lista
+            </Button>
+          </Link>
+          <Link to="/produtos/novo">
+            <Button variant="outlined" color="primary">
+              Novo Produto
+            </Button>
+          </Link>
+        </Box>
         {isLoading && <CircularProgress />}
         {error && <Typography>Ocorreu um erro ao buscar as listas</Typography>}
         <Box display="flex" flexDirection="column" gap={2}>
