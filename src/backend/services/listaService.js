@@ -10,6 +10,10 @@ module.exports = class ListaService {
       id_usuario: idUsuario,
     });
 
+    if (lista.produtos) {
+      await listaCriada.setProdutos(lista.produtos);
+    }
+
     return listaCriada;
   }
 

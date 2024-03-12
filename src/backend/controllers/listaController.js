@@ -13,8 +13,9 @@ module.exports = class ListaController {
       const schema = Joi.object({
         nome: Joi.string().required(),
         descricao: Joi.string().required(),
-        cor: Joi.string().required(),
-        ativo: Joi.boolean().required()
+        cor: Joi.string(),
+        ativo: Joi.boolean().default(true),
+        produtos: Joi.array().items(Joi.number().integer()).default([]),
       });
 
       const { value, error } = schema.validate(trilha);
