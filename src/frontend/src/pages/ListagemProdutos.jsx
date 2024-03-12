@@ -28,13 +28,13 @@ export default function ListagemProdutos() {
       await api.get(`/listas/${listaId}/produtos`).then((res) => res.data),
   });
 
-  const { data: lista } = useQuery({
+  const { data: lista, isLoading: isLoadingListas } = useQuery({
     queryKey: ["lista", listaId],
     queryFn: async () =>
       await api.get(`/listas/${listaId}`).then((res) => res.data),
   });
 
-  if (isLoading) return <Typography>Carregando...</Typography>;
+  if (isLoading || isLoadingListas) return <Typography>Carregando...</Typography>;
   if (error)
     return <Typography>Ocorreu um erro ao buscar os produtos.</Typography>;
 
