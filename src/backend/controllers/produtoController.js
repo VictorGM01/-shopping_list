@@ -12,9 +12,10 @@ module.exports = class ProdutoController {
 
       const schema = Joi.object({
         nome: Joi.string().required(),
-        link_compra: Joi.string().required(),
+        link_compra: Joi.string(),
         preco: Joi.number().required(),
-        comprado: Joi.boolean().required(),
+        comprado: Joi.boolean().default(false),
+        listas: Joi.array().items(Joi.number().integer()),
       });
 
       const { value, error } = schema.validate(produto);

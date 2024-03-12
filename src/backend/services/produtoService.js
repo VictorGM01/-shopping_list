@@ -10,6 +10,10 @@ module.exports = class ProdutoService {
       id_usuario: idUsuario,
     });
 
+    if (produto.listas) {
+      await produtoCriado.setListas(produto.listas);
+    }
+
     return produtoCriado;
   }
 
