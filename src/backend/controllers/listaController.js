@@ -31,4 +31,34 @@ module.exports = class ListaController {
       reply.status(500).send({ message: error.message });
     }
   }
+
+  static async findAll(request, reply) {
+    try {
+      const idUsuario = request.user.id;
+
+      const listas = await listaService.findAll(idUsuario);
+
+      reply.status(200).send(listas);
+    } catch (error) {
+      reply.status(500).send({ message: error.message });
+    }
+  }
+
+  static async findOne(request, reply) {
+    try {
+      const idUsuario = request.user.id;
+      const idLista = request.params.id;
+
+      const lista = await listaService.findOne(idLista, idUsuario);
+
+      if (!lista) {
+        reply.status(404).send({ message: "Lista não encontrada" });
+        return;
+      }
+
+      reply.status(200).send(lista);
+    } catch (error) {
+      reply.status(500).send({ message: error.message });
+    }
+  }
 };
