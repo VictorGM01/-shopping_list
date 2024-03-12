@@ -1,8 +1,13 @@
 const fastify = require("fastify")({ logger: true });
 const { routes, routesWithAuth } = require("./routes/routes.js");
 const dotenv = require("dotenv");
+const cors = require("@fastify/cors");
 
 dotenv.config();
+
+fastify.register(cors, {
+  origin: "*"
+});
 
 fastify.addHook('onRequest', (request, reply, done) => {
   if (request.method === 'POST' && !request.headers['content-type']) {
