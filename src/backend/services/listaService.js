@@ -37,4 +37,32 @@ module.exports = class ListaService {
 
     return lista;
   }
+
+  async addProducts(idLista, produtos, idUsuario) {
+    const produtosBanco = await database.produtos.findAll({
+      where: {
+        id: produtos,
+        id_usuario: idUsuario,
+      },
+    });
+
+    if (produtosBanco.length === 0) {
+      return false;
+    }
+
+    const lista = await database.listas.findOne({
+      where: {
+        id: idLista,
+        id_usuario: idUsuario,
+      },
+    });
+
+    if (!lista) {
+      return false;
+    }
+
+    await lista.addProdutos(produtosBanco);
+
+    return true;
+  }
 };

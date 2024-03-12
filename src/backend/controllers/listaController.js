@@ -62,4 +62,28 @@ module.exports = class ListaController {
       reply.status(500).send({ message: error.message });
     }
   }
+
+  static async addProducts(request, reply) {
+    try {
+      const idUsuario = request.user.id;
+      const idLista = request.params.id;
+
+      const schema = Joi.object({
+        produtos: Joi.array().items(Joi.number().integer()).required(),
+      });
+
+      const { value, error } = schema.validate(request.body);
+
+      if (error) {
+        reply.status(400).send({ message: error.message });
+        return;
+      }
+
+      await listaService.addProducts(idLista, value.produtos, idUsuario);
+
+      reply.status(204).send();
+    } catch (error) {
+      reply.status(500).send({ message: error.message });
+    }
+  }
 };
