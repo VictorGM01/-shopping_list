@@ -133,7 +133,7 @@ module.exports = class ListaController {
 
   
   /**
-   * @description Atualiza uma lista existente
+   * @description Exibe produtos de uma lista existente
    * @date 3/12/2024 - 7:51:10 PM
    *
    * @static
